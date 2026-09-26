@@ -20,7 +20,7 @@ public class IPv4Network {
     public IPv4Network(int pLength, IPv4Address netAddress)
     {
         networkAddress = netAddress;
-        pLength = prefixLength;
+        prefixLength = pLength;
     }
     public IPv4Address getNetworkAddress() {
         return networkAddress;
