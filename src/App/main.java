@@ -4,6 +4,8 @@
  */
 package App;
 
+
+import UI.MainW;
 /**
  *
  * @author Lenovo
@@ -11,6 +13,15 @@ package App;
 public class main {
     public static void main(String[]args)
     {
-        System.out.println("Hola mundo");
+        try
+        {
+         MainW v = new MainW();
+         v.setVisible(true);
+         System.out.println("Corriendo calculadora");
+        }
+        catch(Exception e)
+        {
+            System.out.println("El sistema no pudo funcionar algo salío mal :C");
+        }
     }
 }
