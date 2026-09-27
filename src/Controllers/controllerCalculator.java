@@ -7,6 +7,7 @@ package Controllers;
 import Models.IPv4Address;
 import Models.IPv4Network;
 import Services.IPv4Calculator;
+import UI.VistaCalculadoraIPv4;
 
 /**
  *
@@ -15,14 +16,26 @@ import Services.IPv4Calculator;
 public class controllerCalculator {
 
     public static IPv4Network CalcularSubnet(String ipv4, String cidr) {
-      IPv4Address ip = new IPv4Address(ipv4);
 
-    int prefijo = Integer.parseInt(cidr);
+    try {
+        IPv4Address ip = new IPv4Address(ipv4);
 
-    IPv4Network resultado =
-            IPv4Calculator.calculateNetwork(ip, prefijo);
+        int prefijo = Integer.parseInt(cidr);
 
-    return resultado;
+        return IPv4Calculator.calculateNetwork(ip, prefijo);
+
+    } catch (NumberFormatException e) {
+        VistaCalculadoraIPv4.MostrarMensajeError(
+                "El prefijo debe ser un número entero."
+        );
+        return null;
+
+    } catch (IllegalArgumentException e) {
+        VistaCalculadoraIPv4.MostrarMensajeError(
+                e.getMessage()
+        );
+        return null;
     }
-    
+}
+
 }

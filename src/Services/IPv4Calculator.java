@@ -14,7 +14,18 @@ import Models.IPv4Network;
 public class IPv4Calculator {
 
     public static IPv4Network calculateNetwork(IPv4Address ip, int prefix) {
- long ipNumber = ipToNumber(ip);
+
+        if (ip == null) {
+            throw new IllegalArgumentException("La dirección IPv4 no puede ser nula.");
+        }
+
+        if (prefix < 0 || prefix > 32) {
+            throw new IllegalArgumentException(
+                    "El prefijo debe estar entre 0 y 32."
+            );
+        }
+
+        long ipNumber = ipToNumber(ip);
         long mask = calculateMask(prefix);
 
         long networkNumber = ipNumber & mask;
@@ -64,16 +75,12 @@ public class IPv4Calculator {
     }
 
     private static long calculateMask(int prefix) {
-        // Crear la máscara a partir del prefijo
-        int mask;
 
         if (prefix == 0) {
-            mask = 0;
-        } else {
-            mask = (0xFFFFFFFF << (32 - prefix));
+            return 0L;
         }
 
-        return mask;
+        return (0xFFFFFFFFL << (32 - prefix)) & 0xFFFFFFFFL;
     }
 
     private static IPv4Address numberToIp(long networkNumber) {

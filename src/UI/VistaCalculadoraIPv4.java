@@ -7,12 +7,22 @@ package UI;
 import Controllers.controllerCalculator;
 import Models.IPv4Network;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Lenovo
  */
 public class VistaCalculadoraIPv4 extends javax.swing.JFrame {
+
+    public static void MostrarMensajeError(String mensaje) {
+        JOptionPane.showMessageDialog(
+                null,
+                mensaje,
+                "Error",
+                JOptionPane.ERROR_MESSAGE
+        );
+    }
 
     /**
      * Creates new form VistaCalculadoraIPv4
@@ -312,7 +322,6 @@ public class VistaCalculadoraIPv4 extends javax.swing.JFrame {
     private void calcular() {
         String ipv4 = txtIPv4.getText();
         String cidr = txtPrefijoCIDR.getText();
-
         CalcularSubnet(controllerCalculator.CalcularSubnet(ipv4, cidr));
     }
 
@@ -325,7 +334,7 @@ public class VistaCalculadoraIPv4 extends javax.swing.JFrame {
         String lastHost = resultado.getLastHost().getIpv4();
         long total = resultado.getTotalAddresses();
         long hosts = resultado.getUsableHosts();
-        
+
         networkValor.setText(network + "/" + prefix);
         maskValor.setText(mask);
         broadcastValor.setText(broadcast);
@@ -333,6 +342,6 @@ public class VistaCalculadoraIPv4 extends javax.swing.JFrame {
         lstHostValor.setText(lastHost);
         totalValor.setText(String.valueOf(total));
         hostValor.setText(String.valueOf(hosts));
-        
+
     }
 }
