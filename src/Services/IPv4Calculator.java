@@ -7,6 +7,7 @@ package Services;
 import Models.IPv4Address;
 import Models.IPv4Network;
 
+
 /**
  *
  * @author Lenovo
@@ -18,6 +19,8 @@ public class IPv4Calculator {
         if (ip == null) {
             throw new IllegalArgumentException("La dirección IPv4 no puede ser nula.");
         }
+        
+        
 
         if (prefix < 0 || prefix > 32) {
             throw new IllegalArgumentException(

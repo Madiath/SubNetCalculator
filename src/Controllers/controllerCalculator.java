@@ -8,6 +8,7 @@ import Models.IPv4Address;
 import Models.IPv4Network;
 import Services.IPv4Calculator;
 import UI.VistaCalculadoraIPv4;
+import validators.validateIPv4;
 
 /**
  *
@@ -22,11 +23,12 @@ public class controllerCalculator {
 
         int prefijo = Integer.parseInt(cidr);
 
+        validateIPv4.IPv4valida(ipv4);
         return IPv4Calculator.calculateNetwork(ip, prefijo);
 
     } catch (NumberFormatException e) {
         VistaCalculadoraIPv4.MostrarMensajeError(
-                "El prefijo debe ser un número entero."
+                "Uno de los valores proporcinados no es un número entero."
         );
         return null;
 
@@ -34,6 +36,11 @@ public class controllerCalculator {
         VistaCalculadoraIPv4.MostrarMensajeError(
                 e.getMessage()
         );
+        return null;
+    }
+    catch(Exception e)
+    {
+        VistaCalculadoraIPv4.MostrarMensajeError(e.getMessage());
         return null;
     }
 }
