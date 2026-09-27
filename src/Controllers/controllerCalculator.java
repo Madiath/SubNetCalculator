@@ -18,10 +18,6 @@ public class controllerCalculator {
       IPv4Address ip = new IPv4Address(ipv4);
 
     int prefijo = Integer.parseInt(cidr);
-    
-    System.out.println("IP: " + ipv4);
-    System.out.println("CIDR recibido: " + cidr);
-    System.out.println("Prefijo convertido: " + prefijo);
 
     IPv4Network resultado =
             IPv4Calculator.calculateNetwork(ip, prefijo);

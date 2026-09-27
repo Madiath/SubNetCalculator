@@ -319,7 +319,20 @@ public class VistaCalculadoraIPv4 extends javax.swing.JFrame {
     private void CalcularSubnet(IPv4Network resultado) {
         String network = resultado.getNetworkAddress().getIpv4();
         int prefix = resultado.getPrefixLength();
-
+        String mask = resultado.getMask().getIpv4();
+        String broadcast = resultado.getBroadcastAddress().getIpv4();
+        String firstHost = resultado.getFirstHost().getIpv4();
+        String lastHost = resultado.getLastHost().getIpv4();
+        long total = resultado.getTotalAddresses();
+        long hosts = resultado.getUsableHosts();
+        
         networkValor.setText(network + "/" + prefix);
+        maskValor.setText(mask);
+        broadcastValor.setText(broadcast);
+        frHostValor.setText(firstHost);
+        lstHostValor.setText(lastHost);
+        totalValor.setText(String.valueOf(total));
+        hostValor.setText(String.valueOf(hosts));
+        
     }
 }
